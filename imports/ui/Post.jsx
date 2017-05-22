@@ -5,19 +5,23 @@ import RaisedButton from 'material-ui/RaisedButton'
 export default class Post extends Component {
   render(){
     return(
-      <div className='row'>
-        <div className='col s8 left'>
-          {this.props.post.title}
-        </div>
-        <div className='col s4 right'>
-          {this.props.post.title}
-        </div>
-        <div className='col s12'>
+      <ul className='row'>
+        <li className='collection with-header'>
+          <h5>
+            <div className='left'>
+              {this.props.post.title}
+            </div>
+          </h5>
+          <div className='right'>
+            {this.props.post.createdAt.toDateString()}
+          </div>
+        </li>
+        <li className='collection-item'>
           {this.props.post.description}
-        </div>
+        </li>
 
 
-      </div>
+      </ul>
     )
   }
 }

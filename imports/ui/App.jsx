@@ -10,7 +10,6 @@ import { PropTypes } from 'prop-types';
 import { Posts } from '../api/posts'
 
 import Post from './Post'
-import Blog from './Blog';
 import NewPost from './NewPost';
 
 
@@ -32,7 +31,7 @@ class App extends Component {
           <div className='col s12'>
             {this.renderPosts()}
           </div>
-          <p>foo</p>
+          <a href='/new'>new post</a>
         </div>
 
       </MuiThemeProvider>
@@ -48,6 +47,6 @@ export default Blog = createContainer(() => {
   Meteor.subscribe("posts");
 
   return{
-    posts: Posts.find().fetch()
+    posts: Posts.find({}, {sort: {createdAt: -1}}).fetch()
   }
 }, App)
