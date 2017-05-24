@@ -6,14 +6,21 @@ export default class NewPost extends Component {
 
   submitPost(e) {
     e.preventDefault();
-    Posts.insert({
+    let post = {
       title: this.refs.title.value,
       description: this.refs.description.value,
-      createdAt: new Date()
-    });
+      owner: Meteor.userId(),
+      createdAt: new Date(),
+    }
 
-    console.log("post added");
-    this.props.history.push('/');
+    Meteor.call('insertPost', post, (error) =>{
+      if (error){
+        alert('something went wrong' + error.reason);
+      } else {
+        alert(post);
+        this.props.history.push('/');
+      }
+    })
   }
 
   render() {
